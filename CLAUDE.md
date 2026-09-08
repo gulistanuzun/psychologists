@@ -176,7 +176,7 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 4. ✅ Modal component (genel amaçlı, X/backdrop/Esc ile kapanan)
 5. ✅ Yup validasyon şemaları (login/register) — `src/schemas/authSchemas.js`
 6. ✅ LoginForm + RegisterForm component'leri — `src/components/AuthForm/` (react-hook-form + yupResolver, useAuth login/register, onSuccess prop, root hata için setError)
-7. ⬜ Header (nav + auth butonları + modalları bağlama) + Favorites için PrivateRoute guard
+7. ✅ Header (nav + Log In/Registration butonları → Modal + AuthForm; girişliyken email + Log out, Favorites nav linki) + `PrivateRoute` guard (isLoading beklenir, girişsiz `/favorites` → `/`). App.jsx'e Header + guard bağlandı. Tarayıcıda test edildi, sorun yok.
 8. ⬜ Global stil/renk paleti (index.css — terracotta+krem değişkenleri)
 9. ⬜ Home sayfası (gerçek içerik: başlık, slogan, CTA)
 10. ⬜ `psychologists.json`'ı Realtime Database'e yükleme + veri çekme/sıralama/load-more hook'u
