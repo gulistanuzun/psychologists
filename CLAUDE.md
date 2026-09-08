@@ -154,14 +154,26 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 - `src/context/AuthContext.jsx` kullanıcı tarafından yazıldı (AuthProvider + useAuth,
   onAuthStateChanged ile oturum takibi, register/login/logout).
 - Git deposu kuruldu (`git init`), ilk commit atıldı (`.env` hariç, `.env.example` dahil).
-  GitHub remote'u bekleniyor — kullanıcı boş bir repo oluşturup URL paylaşacak, sonra push
-  edilecek.
+  GitHub remote'u eklendi (`github.com/gulistanuzun/psychologists`) ve push edildi.
+
+### 2026-09-08 (34 gün aradan sonra devam)
+- `AuthProvider` `main.jsx`'e bağlandı (BrowserRouter içinde, App dışında) — adım 3 tamamlandı.
+- Modal component eklendi: `src/components/Modal/Modal.jsx` + `Modal.module.css`.
+  - `createPortal` ile `document.body`'e render → parent overflow/z-index/transform
+    stacking'inden bağımsız, her zaman en üstte.
+  - Kapanma yolları: X butonu, backdrop tıklaması (`target === currentTarget` kontrolü),
+    Esc tuşu (`keydown` listener, sadece açıkken).
+  - Açıkken `document.body` scroll kilidi; cleanup'ta listener kaldırılır + scroll geri açılır.
+  - `role="dialog"` / `aria-modal` / `aria-label` — erişilebilirlik.
+  - Renkler şimdilik elle (`rgba(61,43,34,.6)`, `#3d2b22`); adım 8'de CSS değişkenlerine geçilecek.
+- Bu adım (AuthProvider bağlama + Modal) kullanıcının açık isteğiyle Claude tarafından yazıldı;
+  kullanıcı adım 5'ten itibaren tekrar kendisi yazacak.
 
 ## Yapım Sırası (yol haritası)
 1. ✅ Firebase config (`src/firebase.js`)
 2. ✅ Routing iskeleti (main.jsx + App.jsx + pages/)
-3. ⬜ Auth Context (AuthProvider + useAuth hook — kullanıcı giriş durumu, register/login/logout)
-4. ⬜ Modal component (genel amaçlı, X/backdrop/Esc ile kapanan)
+3. ✅ Auth Context (AuthProvider + useAuth hook — kullanıcı giriş durumu, register/login/logout)
+4. ✅ Modal component (genel amaçlı, X/backdrop/Esc ile kapanan)
 5. ⬜ Yup validasyon şemaları (login/register)
 6. ⬜ LoginForm + RegisterForm component'leri
 7. ⬜ Header (nav + auth butonları + modalları bağlama) + Favorites için PrivateRoute guard
