@@ -174,7 +174,7 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 2. ✅ Routing iskeleti (main.jsx + App.jsx + pages/)
 3. ✅ Auth Context (AuthProvider + useAuth hook — kullanıcı giriş durumu, register/login/logout)
 4. ✅ Modal component (genel amaçlı, X/backdrop/Esc ile kapanan)
-5. ⬜ Yup validasyon şemaları (login/register)
+5. ✅ Yup validasyon şemaları (login/register) — `src/schemas/authSchemas.js`
 6. ⬜ LoginForm + RegisterForm component'leri
 7. ⬜ Header (nav + auth butonları + modalları bağlama) + Favorites için PrivateRoute guard
 8. ⬜ Global stil/renk paleti (index.css — terracotta+krem değişkenleri)
