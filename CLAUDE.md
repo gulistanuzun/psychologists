@@ -151,6 +151,11 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
   getDatabase, env'den config okuma).
 - React Router kurulumu tamamlandı: `main.jsx`'e BrowserRouter, `App.jsx`'e 3 route
   (Home/Psychologists/Favorites), `src/pages/` altında 3 placeholder sayfa. Build hatasız.
+- `src/context/AuthContext.jsx` kullanıcı tarafından yazıldı (AuthProvider + useAuth,
+  onAuthStateChanged ile oturum takibi, register/login/logout).
+- Git deposu kuruldu (`git init`), ilk commit atıldı (`.env` hariç, `.env.example` dahil).
+  GitHub remote'u bekleniyor — kullanıcı boş bir repo oluşturup URL paylaşacak, sonra push
+  edilecek.
 
 ## Yapım Sırası (yol haritası)
 1. ✅ Firebase config (`src/firebase.js`)
@@ -169,6 +174,6 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 14. ⬜ Favorites sayfası (aynı kart yapısı, favorilere filtrelenmiş)
 15. ⬜ Randevu modalı + formu (react-hook-form + yup)
 16. ⬜ Responsive kontrol (320–1440px, tüm sayfalar)
-17. ⬜ README.md (proje konusu, teknolojiler, maket, şartname)
+17. ⬜ README.md (proje konusu, teknolojiler, maket, şartname — şu an default Vite README'i duruyor)
 18. ⬜ Firebase güvenlik kurallarını sıkılaştırma (test mode'dan çıkış)
 19. ⬜ Deploy (GitHub Pages / Netlify)
