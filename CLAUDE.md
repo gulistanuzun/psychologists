@@ -191,8 +191,11 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 6. ✅ LoginForm + RegisterForm component'leri — `src/components/AuthForm/` (react-hook-form + yupResolver, useAuth login/register, onSuccess prop, root hata için setError)
 7. ✅ Header (nav + Log In/Registration butonları → Modal + AuthForm; girişliyken email + Log out, Favorites nav linki) + `PrivateRoute` guard (isLoading beklenir, girişsiz `/favorites` → `/`). App.jsx'e Header + guard bağlandı. Tarayıcıda test edildi, sorun yok.
 8. ✅ Global stil/renk paleti (index.css — terracotta+krem CSS değişkenleri; Header + Modal renkleri var()'a geçirildi)
-9. ⬜ Home sayfası (gerçek içerik: başlık, slogan, CTA)
-10. ⬜ `psychologists.json`'ı Realtime Database'e yükleme + veri çekme/sıralama/load-more hook'u
+9. ✅ Home sayfası (`Home.jsx` + `Home.module.css` + `public/hero.jpg` — başlık, slogan, "Get started" CTA, 10,000+ rozeti, 768px breakpoint). Commit 77e365e.
+10. 🔶 Veri katmanı — KOD tarafı bitti, DB yüklemesi kullanıcıda:
+    - ✅ `src/api/psychologists.js`: `fetchPsychologists(sortKey, limit)` + `SORT_OPTIONS`. RTDB tek child alanında ve hep artan sıralar → azalan sıralamalar `limitToLast` + `rows.reverse()`. Her kayda `id: child.key` eklenir (favoriler için).
+    - ✅ `src/hooks/usePsychologists.js`: `sort`/`limit` state, `loadMore` limit'i 3'er artırır (her seferinde yeni DB isteği), `changeSort` limit'i 3'e sıfırlar, `ignore` bayrağı ile race koruması, `hasMore = rows.length === limit`. Commit f08177d.
+    - ⬜ `psychologists.json`'ı Realtime Database `psychologists` düğümüne yükleme (tarayıcıdan Import JSON — sarmalayıcı `{ "psychologists": [...] }` dosyasıyla). `orderByChild` için `.indexOn` uyarısı çıkabilir → adım 18'de düzeltilecek.
 11. ⬜ PsychologistCard component'i (kart UI, read more, kalp/favori butonu)
 12. ⬜ Psychologists sayfası (sıralama dropdown + kart listesi + load more)
 13. ⬜ Favori mantığı (localStorage veya Firebase users — ekleme/çıkarma, sayfa yenilemede korunma)
