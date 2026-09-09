@@ -169,6 +169,19 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 - Bu adım (AuthProvider bağlama + Modal) kullanıcının açık isteğiyle Claude tarafından yazıldı;
   kullanıcı adım 5'ten itibaren tekrar kendisi yazacak.
 
+### 2026-09-09
+- Adım 8 tamamlandı — global stil/renk paleti (kullanıcı yazdı, Claude adım adım anlattı).
+  - `src/index.css`: `:root` altında terracotta+krem paleti CSS değişkeni olarak tanımlandı
+    (`--color-primary` … `--color-text-muted`), ayrıca `--color-border: #eaded0` (ayraç/kart
+    kenarı), `--color-backdrop` (modal perde rgba'sı string olarak), `--radius: 16px`,
+    `--max-width: 1184px`. Global reset: `box-sizing: border-box`, `body` krem arka plan +
+    `line-height`, `a`/`button`/`img` reset'leri.
+  - `Header.module.css` ve `Modal.module.css`: elle yazılı renk kodları `var(--color-*)`'a
+    çevrildi. Görsel çıktı birebir aynı — amaç renkleri tek kaynaktan yönetmek.
+  - Neden: renk her component'e kopyalanınca palet değişikliği 8-10 dosya gezmeyi gerektirir;
+    değişkenle tek satır. Ödevin "kod düzenli" kriterinin parçası.
+  - `npm run build` hatasız.
+
 ## Yapım Sırası (yol haritası)
 1. ✅ Firebase config (`src/firebase.js`)
 2. ✅ Routing iskeleti (main.jsx + App.jsx + pages/)
@@ -177,7 +190,7 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 5. ✅ Yup validasyon şemaları (login/register) — `src/schemas/authSchemas.js`
 6. ✅ LoginForm + RegisterForm component'leri — `src/components/AuthForm/` (react-hook-form + yupResolver, useAuth login/register, onSuccess prop, root hata için setError)
 7. ✅ Header (nav + Log In/Registration butonları → Modal + AuthForm; girişliyken email + Log out, Favorites nav linki) + `PrivateRoute` guard (isLoading beklenir, girişsiz `/favorites` → `/`). App.jsx'e Header + guard bağlandı. Tarayıcıda test edildi, sorun yok.
-8. ⬜ Global stil/renk paleti (index.css — terracotta+krem değişkenleri)
+8. ✅ Global stil/renk paleti (index.css — terracotta+krem CSS değişkenleri; Header + Modal renkleri var()'a geçirildi)
 9. ⬜ Home sayfası (gerçek içerik: başlık, slogan, CTA)
 10. ⬜ `psychologists.json`'ı Realtime Database'e yükleme + veri çekme/sıralama/load-more hook'u
 11. ⬜ PsychologistCard component'i (kart UI, read more, kalp/favori butonu)

@@ -3,13 +3,13 @@
   align-items: center;
   gap: 24px;
   padding: 16px 32px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #eaded0;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .logo {
   font-weight: 700;
-  color: #3d2b22;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -19,13 +19,13 @@
 }
 
 .link {
-  color: #7a6656;
+  color: var(--color-text-muted);
   text-decoration: none;
   font-size: 14px;
 }
 
 .link.active {
-  color: #d96c4a;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
@@ -38,16 +38,16 @@
 
 .user {
   font-size: 14px;
-  color: #3d2b22;
+  color: var(--color-text);
 }
 
 .loginBtn,
 .logout {
   padding: 8px 16px;
   font-size: 14px;
-  color: #3d2b22;
+  color: var(--color-text);
   background: transparent;
-  border: 1px solid #d96c4a;
+  border: 1px solid var(--color-primary);
   border-radius: 20px;
   cursor: pointer;
 }
@@ -55,8 +55,8 @@
 .registerBtn {
   padding: 8px 20px;
   font-size: 14px;
-  color: #ffffff;
-  background-color: #d96c4a;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 20px;
   cursor: pointer;
