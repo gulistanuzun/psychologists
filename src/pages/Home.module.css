@@ -1,0 +1,86 @@
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 64px 32px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: 56px;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.text {
+  margin: 0 0 40px;
+  max-width: 44ch;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+  border-radius: 30px;
+}
+
+.cta:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.visual {
+  position: relative;
+  flex: 1;
+}
+
+.image {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.badge {
+  position: absolute;
+  left: -24px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.badgeNumber {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.badgeLabel {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+}
