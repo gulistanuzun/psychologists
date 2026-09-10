@@ -1,0 +1,70 @@
+.card {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.body { flex: 1; min-width: 0; }
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.label { margin: 0; font-size: 12px; color: var(--color-text-muted); }
+.name { margin: 4px 0 0; font-size: 18px; }
+
+.headRight { display: flex; align-items: center; gap: 16px; }
+
+.heart {
+  border: none;
+  background: none;
+  font-size: 20px;
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+.heart[aria-pressed="true"] { color: var(--color-primary); }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+.meta span { color: var(--color-text-muted); }
+
+.about { margin: 0 0 16px; color: var(--color-text-muted); font-size: 14px; }
+
+.readMore {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.appointment {
+  margin-top: 16px;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 600;
+}
