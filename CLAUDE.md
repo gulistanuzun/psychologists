@@ -195,11 +195,11 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 10. 🔶 Veri katmanı — KOD tarafı bitti, DB yüklemesi kullanıcıda:
     - ✅ `src/api/psychologists.js`: `fetchPsychologists(sortKey, limit)` + `SORT_OPTIONS`. RTDB tek child alanında ve hep artan sıralar → azalan sıralamalar `limitToLast` + `rows.reverse()`. Her kayda `id: child.key` eklenir (favoriler için).
     - ✅ `src/hooks/usePsychologists.js`: `sort`/`limit` state, `loadMore` limit'i 3'er artırır (her seferinde yeni DB isteği), `changeSort` limit'i 3'e sıfırlar, `ignore` bayrağı ile race koruması, `hasMore = rows.length === limit`. Commit f08177d.
-    - ⬜ `psychologists.json`'ı Realtime Database `psychologists` düğümüne yükleme (tarayıcıdan Import JSON — sarmalayıcı `{ "psychologists": [...] }` dosyasıyla). `orderByChild` için `.indexOn` uyarısı çıkabilir → adım 18'de düzeltilecek.
-11. ⬜ PsychologistCard component'i (kart UI, read more, kalp/favori butonu)
-12. ⬜ Psychologists sayfası (sıralama dropdown + kart listesi + load more)
-13. ⬜ Favori mantığı (localStorage veya Firebase users — ekleme/çıkarma, sayfa yenilemede korunma)
-14. ⬜ Favorites sayfası (aynı kart yapısı, favorilere filtrelenmiş)
+    - ✅ `psychologists.json` Realtime Database `psychologists` düğümüne yüklendi (32 kayıt, anahtarlar `0…31`). `orderByChild` için `.indexOn` uyarısı SDK'da sadece uyarı (hata değil, client'ta sıralıyor) → adım 18'de düzeltilecek.
+11. ✅ PsychologistCard component'i — `src/components/PsychologistCard/` (presentational: `psychologist`/`isFavorite`/`onToggleFavorite` prop; `expanded` local state ile Read more → yorumlar + Make an appointment; kalp butonu `aria-pressed`).
+12. ✅ Psychologists sayfası — `usePsychologists` + kontrollü `<select>` (SORT_OPTIONS) + kart listesi + Load more. Yetkisiz kullanıcı kalbe basınca `Modal`+`LoginForm` açılır. Tarayıcıda test edildi.
+13. ✅ Favori mantığı — `src/context/FavoritesContext.jsx` (localStorage, anahtar `favorites:<uid>`; iki `useEffect`: user değişince oku / ids değişince yaz; `isFavorite`/`toggleFavorite`). `main.jsx`'te `AuthProvider` içine sarıldı.
+14. ✅ Favorites sayfası — `fetchPsychologistsByIds(ids)` (`Promise.all` ile paralel `get`, `filter(exists)`) + `Favorites.jsx` (PrivateRoute arkasında olduğu için auth modalı yok; `ids` değişince yeniden çeker, `Psychologists.module.css`'i paylaşır).
 15. ⬜ Randevu modalı + formu (react-hook-form + yup)
 16. ⬜ Responsive kontrol (320–1440px, tüm sayfalar)
 17. ⬜ README.md (proje konusu, teknolojiler, maket, şartname — şu an default Vite README'i duruyor)

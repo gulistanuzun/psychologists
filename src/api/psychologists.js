@@ -35,3 +35,12 @@ export async function fetchPsychologists(sortKey, limit) {
 
   return reverse ? rows.reverse() : rows;
 }
+
+export async function fetchPsychologistsByIds(ids) {
+  const snaps = await Promise.all(
+    ids.map((id) => get(ref(database, `psychologists/${id}`)))
+  );
+  return snaps
+    .filter((snap) => snap.exists())
+    .map((snap) => ({ id: snap.key, ...snap.val() }));
+}
