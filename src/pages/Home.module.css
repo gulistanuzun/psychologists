@@ -35,6 +35,7 @@
   color: var(--color-surface);
   background-color: var(--color-primary);
   border-radius: 30px;
+  transition: background-color 0.2s ease;
 }
 
 .cta:hover {

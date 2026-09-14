@@ -18,7 +18,7 @@ function RegisterForm({ onSuccess }) {
 
   const onSubmit = async (data) => {
     try {
-      await registerUser(data.email, data.password);
+      await registerUser(data.name, data.email, data.password);
       onSuccess();
     } catch {
       setError("root", { message: "Registration failed. Try another email." });
@@ -29,7 +29,8 @@ function RegisterForm({ onSuccess }) {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <h2 className={styles.title}>Registration</h2>
       <p className={styles.text}>
-        Thank you for your interest in our platform! Please provide the following
+        Thank you for your interest in our platform! In order to register, we
+        need some information. Please provide us with the following
         information.
       </p>
 

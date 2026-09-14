@@ -1,17 +1,34 @@
 .header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 16px 32px;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
 }
 
+.inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 130px;
+  padding: 16px 32px;
+}
+
 .logo {
+  display: inline-flex;
+  align-items: baseline;
   font-weight: 700;
-  color: var(--color-text);
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
   text-decoration: none;
+}
+
+.logoHighlight {
+  color: var(--color-primary);
+}
+
+.logoSuffix {
+  color: var(--color-text-muted);
 }
 
 .burger {
@@ -37,19 +54,22 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-left: auto;
+  flex: 1;
 }
 
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .link {
   position: relative;
-  color: var(--color-text-muted);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
   text-decoration: none;
-  font-size: 14px;
 }
 
 .active::after {
@@ -67,18 +87,42 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+  border-radius: 50%;
 }
 
 .user {
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
   color: var(--color-text);
 }
 
-.loginBtn,
-.logout {
+.loginBtn {
   padding: 8px 16px;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
   color: var(--color-text);
   background: transparent;
   border: 1px solid var(--color-primary);
@@ -86,10 +130,26 @@
   cursor: pointer;
 }
 
+.logout {
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .registerBtn {
   padding: 8px 20px;
-  font-size: 14px;
-  color: var(--color-surface);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
   background-color: var(--color-primary);
   border: none;
   border-radius: 20px;
@@ -97,6 +157,10 @@
 }
 
 @media (max-width: 480px) {
+  .inner {
+    gap: 12px;
+  }
+
   .burger {
     display: flex;
   }
@@ -128,6 +192,7 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    margin-left: 0;
   }
 
   .loginBtn,

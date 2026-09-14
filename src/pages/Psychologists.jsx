@@ -6,6 +6,7 @@ import { useFavorites } from "../context/FavoritesContext";
 import PsychologistCard from "../components/PsychologistCard/PsychologistCard";
 import Modal from "../components/Modal/Modal";
 import LoginForm from "../components/AuthForm/LoginForm";
+import SortDropdown from "../components/SortDropdown/SortDropdown";
 import styles from "./Psychologists.module.css";
 
 export default function Psychologists() {
@@ -27,21 +28,15 @@ export default function Psychologists() {
   return (
     <main className={styles.page}>
       <div className={styles.toolbar}>
-        <label className={styles.filterLabel} htmlFor="sort">
+        <span id="sortLabel" className={styles.filterLabel}>
           Filters
-        </label>
-        <select
-          id="sort"
-          className={styles.select}
+        </span>
+        <SortDropdown
+          options={SORT_OPTIONS}
           value={sort}
-          onChange={(e) => changeSort(e.target.value)}
-        >
-          {SORT_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
+          onChange={changeSort}
+          labelledBy="sortLabel"
+        />
       </div>
 
       {error && (

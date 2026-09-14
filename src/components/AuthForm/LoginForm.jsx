@@ -29,7 +29,8 @@ function LoginForm({ onSuccess }) {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
       <h2 className={styles.title}>Log In</h2>
       <p className={styles.text}>
-        Welcome back! Please enter your credentials to access your account.
+        Welcome back! Please enter your credentials to access your account
+        and continue your search for a psychologist.
       </p>
 
       <label className={styles.field}>

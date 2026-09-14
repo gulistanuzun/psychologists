@@ -18,76 +18,89 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.logo}>
-        psychologists.services
-      </Link>
+      <div className={styles.inner}>
+        <Link to="/" className={styles.logo}>
+          <span className={styles.logoHighlight}>psychologists</span>
+          <span className={styles.logoSuffix}>.services</span>
+        </Link>
 
-      <button
-        type="button"
-        className={styles.burger}
-        aria-label="Toggle menu"
-        aria-expanded={menuOpen}
-        onClick={() => setMenuOpen((open) => !open)}
-      >
-        <span className={styles.burgerLine} />
-        <span className={styles.burgerLine} />
-        <span className={styles.burgerLine} />
-      </button>
+        <button
+          type="button"
+          className={styles.burger}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span className={styles.burgerLine} />
+          <span className={styles.burgerLine} />
+          <span className={styles.burgerLine} />
+        </button>
 
-      <div className={`${styles.menu} ${menuOpen ? styles.menuOpen : ""}`}>
-        <nav className={styles.nav}>
-          <NavLink to="/" className={linkClass} onClick={closeMenu}>
-            Home
-          </NavLink>
-          <NavLink to="/psychologists" className={linkClass} onClick={closeMenu}>
-            Psychologists
-          </NavLink>
-          {user && (
-            <NavLink to="/favorites" className={linkClass} onClick={closeMenu}>
-              Favorites
+        <div className={`${styles.menu} ${menuOpen ? styles.menuOpen : ""}`}>
+          <nav className={styles.nav}>
+            <NavLink to="/" className={linkClass} onClick={closeMenu}>
+              Home
             </NavLink>
-          )}
-        </nav>
+            <NavLink to="/psychologists" className={linkClass} onClick={closeMenu}>
+              Psychologists
+            </NavLink>
+            {user && (
+              <NavLink to="/favorites" className={linkClass} onClick={closeMenu}>
+                Favorites
+              </NavLink>
+            )}
+          </nav>
 
-        <div className={styles.actions}>
-          {user ? (
-            <>
-              <span className={styles.user}>{user.email}</span>
-              <button
-                type="button"
-                className={styles.logout}
-                onClick={() => {
-                  logout();
-                  closeMenu();
-                }}
-              >
-                Log out
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                type="button"
-                className={styles.loginBtn}
-                onClick={() => {
-                  setModal("login");
-                  closeMenu();
-                }}
-              >
-                Log In
-              </button>
-              <button
-                type="button"
-                className={styles.registerBtn}
-                onClick={() => {
-                  setModal("register");
-                  closeMenu();
-                }}
-              >
-                Registration
-              </button>
-            </>
-          )}
+          <div className={styles.actions}>
+            {user ? (
+              <>
+                <span className={styles.userInfo}>
+                  <span className={styles.avatar} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" />
+                    </svg>
+                  </span>
+                  <span className={styles.user}>
+                    {user.displayName || user.email}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  className={styles.logout}
+                  onClick={() => {
+                    logout();
+                    closeMenu();
+                  }}
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className={styles.loginBtn}
+                  onClick={() => {
+                    setModal("login");
+                    closeMenu();
+                  }}
+                >
+                  Log In
+                </button>
+                <button
+                  type="button"
+                  className={styles.registerBtn}
+                  onClick={() => {
+                    setModal("register");
+                    closeMenu();
+                  }}
+                >
+                  Registration
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
 

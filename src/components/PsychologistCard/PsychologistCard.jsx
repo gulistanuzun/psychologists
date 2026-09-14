@@ -1,3 +1,5 @@
+import Modal from "../Modal/Modal";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
 import { useState } from "react";
 import styles from "./PsychologistCard.module.css";
 
@@ -7,6 +9,7 @@ export default function PsychologistCard({
   onToggleFavorite,
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [showAppointment, setShowAppointment] = useState(false);
 
   const {
     name,
@@ -95,12 +98,23 @@ export default function PsychologistCard({
               ))}
             </ul>
 
-            <button type="button" className={styles.appointment}>
-              Make an appointment
-            </button>
+<button
+  type="button"
+  className={styles.appointment}
+  onClick={() => setShowAppointment(true)}
+>
+  Make an appointment
+</button>
+
           </div>
         )}
       </div>
+      <Modal isOpen={showAppointment} onClose={() => setShowAppointment(false)}>
+  <AppointmentForm
+    psychologist={psychologist}
+    onSuccess={() => setShowAppointment(false)}
+  />
+</Modal>
     </article>
   );
 }
