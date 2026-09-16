@@ -84,4 +84,8 @@
   .title {
     font-size: 36px;
   }
+
+  .badge {
+    left: 12px;
+  }
 }

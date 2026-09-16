@@ -68,3 +68,20 @@
   color: var(--color-surface);
   font-weight: 600;
 }
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .head {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .headRight {
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+}
+

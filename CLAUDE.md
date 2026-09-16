@@ -192,16 +192,24 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 7. ✅ Header (nav + Log In/Registration butonları → Modal + AuthForm; girişliyken email + Log out, Favorites nav linki) + `PrivateRoute` guard (isLoading beklenir, girişsiz `/favorites` → `/`). App.jsx'e Header + guard bağlandı. Tarayıcıda test edildi, sorun yok.
 8. ✅ Global stil/renk paleti (index.css — terracotta+krem CSS değişkenleri; Header + Modal renkleri var()'a geçirildi)
 9. ✅ Home sayfası (`Home.jsx` + `Home.module.css` + `public/hero.jpg` — başlık, slogan, "Get started" CTA, 10,000+ rozeti, 768px breakpoint). Commit 77e365e.
-10. 🔶 Veri katmanı — KOD tarafı bitti, DB yüklemesi kullanıcıda:
-    - ✅ `src/api/psychologists.js`: `fetchPsychologists(sortKey, limit)` + `SORT_OPTIONS`. RTDB tek child alanında ve hep artan sıralar → azalan sıralamalar `limitToLast` + `rows.reverse()`. Her kayda `id: child.key` eklenir (favoriler için).
-    - ✅ `src/hooks/usePsychologists.js`: `sort`/`limit` state, `loadMore` limit'i 3'er artırır (her seferinde yeni DB isteği), `changeSort` limit'i 3'e sıfırlar, `ignore` bayrağı ile race koruması, `hasMore = rows.length === limit`. Commit f08177d.
-    - ✅ `psychologists.json` Realtime Database `psychologists` düğümüne yüklendi (32 kayıt, anahtarlar `0…31`). `orderByChild` için `.indexOn` uyarısı SDK'da sadece uyarı (hata değil, client'ta sıralıyor) → adım 18'de düzeltilecek.
+10. ✅ Veri katmanı:
+    - `src/api/psychologists.js`: `fetchPsychologists(sortKey, limit)` + `SORT_OPTIONS`. RTDB tek child alanında ve hep artan sıralar → azalan sıralamalar `limitToLast` + `rows.reverse()`. Her kayda `id: child.key` eklenir (favoriler için).
+    - `src/hooks/usePsychologists.js`: `sort`/`limit` state, `loadMore` limit'i 3'er artırır (her seferinde yeni DB isteği), `changeSort` limit'i 3'e sıfırlar, `ignore` bayrağı ile race koruması, `hasMore = rows.length === limit`. Commit f08177d.
+    - `psychologists.json` Realtime Database `psychologists` düğümüne yüklendi (32 kayıt, anahtarlar `0…31`). `orderByChild` için `.indexOn` uyarısı SDK'da sadece uyarı (hata değil, client'ta sıralıyor) → adım 18'de düzeltilecek.
 11. ✅ PsychologistCard component'i — `src/components/PsychologistCard/` (presentational: `psychologist`/`isFavorite`/`onToggleFavorite` prop; `expanded` local state ile Read more → yorumlar + Make an appointment; kalp butonu `aria-pressed`).
-12. ✅ Psychologists sayfası — `usePsychologists` + kontrollü `<select>` (SORT_OPTIONS) + kart listesi + Load more. Yetkisiz kullanıcı kalbe basınca `Modal`+`LoginForm` açılır. Tarayıcıda test edildi.
+12. ✅ Psychologists sayfası — `usePsychologists` + sort dropdown + kart listesi + Load more. Yetkisiz kullanıcı kalbe basınca `Modal`+`LoginForm` açılır.
 13. ✅ Favori mantığı — `src/context/FavoritesContext.jsx` (localStorage, anahtar `favorites:<uid>`; iki `useEffect`: user değişince oku / ids değişince yaz; `isFavorite`/`toggleFavorite`). `main.jsx`'te `AuthProvider` içine sarıldı.
 14. ✅ Favorites sayfası — `fetchPsychologistsByIds(ids)` (`Promise.all` ile paralel `get`, `filter(exists)`) + `Favorites.jsx` (PrivateRoute arkasında olduğu için auth modalı yok; `ids` değişince yeniden çeker, `Psychologists.module.css`'i paylaşır).
-15. ⬜ Randevu modalı + formu (react-hook-form + yup)
+15. ✅ Randevu modalı + formu — `src/components/AppointmentForm/` (react-hook-form + yup, `src/schemas/appointmentSchema.js`), `TimeDropdown` custom component ile meeting time seçimi. `PsychologistCard` içinden "Make an appointment" ile açılıyor. Commit dea7a15.
+    - Ek olarak bu commit'te: `SortDropdown` (native select yerine custom dropdown), Inter fontu + Figma tipografi/spacing hizalaması (Header/AuthForm/AppointmentForm/Modal — kendi renk paletimiz korunarak), Register sonrası Firebase `updateProfile` ile displayName set edilip Header'da avatar+isim gösterimi.
 16. ⬜ Responsive kontrol (320–1440px, tüm sayfalar)
 17. ⬜ README.md (proje konusu, teknolojiler, maket, şartname — şu an default Vite README'i duruyor)
 18. ⬜ Firebase güvenlik kurallarını sıkılaştırma (test mode'dan çıkış)
 19. ⬜ Deploy (GitHub Pages / Netlify)
+
+### NOT — ÇALIŞMA KURALI ihlali tekrarlandı (fark edildi 2026-09-16)
+`git log` incelemesinde `dea7a15` ("appointment booking, custom dropdowns, Figma styling") ve
+`5712757` ("favorites") commit'lerinin "Co-Authored-By: Claude Sonnet 5" imzası taşıdığı görüldü —
+yani bu kod muhtemelen başka bir oturumda yine Claude tarafından yazılmış, kuralın ihlal edildiği
+2026-09-05 notundan sonra tekrar. `449c425` ve `b7ea8ce` gibi diğer commit'lerde bu imza yok
+(kullanıcı kendisi yazmış). 2026-09-16'da bu durum kullanıcıya bildirildi, kural teyit edilecek.
