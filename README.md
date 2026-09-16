@@ -1,16 +1,60 @@
-# React + Vite
+# Psychologists
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Psikolog hizmetleri sunan bir şirket için geliştirilmiş, 3 sayfalı bir React uygulaması. Kullanıcılar psikolog listesini inceleyebilir, sıralayabilir, favorilerine ekleyebilir ve randevu talebi oluşturabilir.
 
-Currently, two official plugins are available:
+## Sayfalar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home** — tanıtım başlığı, slogan ve Psychologists sayfasına yönlendiren CTA.
+- **Psychologists** — psikolog kartları listesi. Alfabetik (A-Z / Z-A), fiyat (artan/azalan) ve popülerliğe (rating) göre sıralama; "Load more" ile ek kayıtların yüklenmesi; favori ekleme/çıkarma; "Read more" ile detay ve yorumların açılması; "Make an appointment" ile randevu formu.
+- **Favorites** — sadece giriş yapmış kullanıcıların erişebildiği, favorilere eklenen psikologların listelendiği sayfa.
 
-## React Compiler
+## Teknolojiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** + **Vite** — component tabanlı UI ve geliştirme ortamı.
+- **React Router** — sayfalar arası routing (Home / Psychologists / Favorites), giriş yapmamış kullanıcılar için `/favorites` route koruması.
+- **Firebase Authentication** — e-posta/şifre ile kayıt, giriş, çıkış.
+- **Firebase Realtime Database** — psikolog verilerinin tutulması.
+- **react-hook-form** + **yup** — kayıt/giriş formu ve randevu formu doğrulaması.
+- **CSS Modules** — component bazlı, çakışmasız stil yönetimi.
 
-## Expanding the Oxlint configuration
+## Tasarım
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Maket olarak verilen Figma tasarımının UI yapısı (bileşenler, sayfa akışı) korunmuş, projeyi özgünleştirmek amacıyla farklı bir renk paleti uygulanmıştır:
+
+- Ana renk (terracotta): `#D96C4A`
+- Vurgu (şeftali): `#E8A87C`
+- Arka plan (krem): `#FBF3E7`
+- Metin (koyu kahve): `#3D2B22`
+
+Figma maketi: https://www.figma.com/design/I5vjNb0NsJOpQRnRpMloSY/Psychologists.Services
+
+## Kurulum
+
+```bash
+npm install
+```
+
+`.env.example` dosyasını `.env` olarak kopyalayıp kendi Firebase proje bilgilerinizi girin:
+
+```bash
+cp .env.example .env
+```
+
+## Geliştirme
+
+```bash
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Şartname Özeti
+
+- Responsive tasarım: 320px – 1440px arası tüm sayfalarda test edilmiştir.
+- Semantik ve valid HTML, konsolda hata yok.
+- Auth ve veri işlemleri Firebase üzerinden yürütülür.
+- Form doğrulamaları react-hook-form + yup ile zorunlu alan kontrolü içerir.

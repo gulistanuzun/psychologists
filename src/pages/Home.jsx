@@ -6,11 +6,13 @@ export default function Home() {
     <main className={styles.hero}>
       <div className={styles.content}>
         <h1 className={styles.title}>
-          The road to the depths of the human soul
+          The road to the <span className={styles.titleItalic}>depths</span> of
+          the human soul
         </h1>
         <p className={styles.text}>
-          We help you to reveal your potential, overcome challenges, and enjoy
-          your life together with our experienced psychologists.
+          We help you to reveal your potential, overcome challenges and find a
+          guide in your own life with the help of our experienced
+          psychologists.
         </p>
         <Link to="/psychologists" className={styles.cta}>
           Get started

@@ -43,7 +43,10 @@ export default function PsychologistCard({
           </div>
 
           <div className={styles.headRight}>
-            <span className={styles.rating}>&#9733; Rating: {rating}</span>
+            <span className={styles.rating}>
+              <span className={styles.star} aria-hidden="true">&#9733;</span>{" "}
+              Rating: {rating}
+            </span>
             <span className={styles.divider} aria-hidden="true" />
             <span className={styles.price}>
               Price / 1 hour:{" "}
@@ -87,11 +90,19 @@ export default function PsychologistCard({
             <ul className={styles.reviews}>
               {reviews.map((r, i) => (
                 <li key={i} className={styles.review}>
-                  <div className={styles.reviewHead}>
-                    <span className={styles.reviewer}>{r.reviewer}</span>
-                    <span className={styles.reviewRating}>
-                      &#9733; {r.rating}
+                  <div className={styles.reviewTop}>
+                    <span className={styles.reviewAvatar} aria-hidden="true">
+                      {r.reviewer?.charAt(0)}
                     </span>
+                    <div>
+                      <div className={styles.reviewHead}>
+                        <span className={styles.reviewer}>{r.reviewer}</span>
+                      </div>
+                      <span className={styles.reviewRating}>
+                        <span className={styles.star} aria-hidden="true">&#9733;</span>{" "}
+                        {r.rating}
+                      </span>
+                    </div>
                   </div>
                   <p className={styles.reviewText}>{r.comment}</p>
                 </li>

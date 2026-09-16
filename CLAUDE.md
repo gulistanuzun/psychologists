@@ -202,8 +202,12 @@ Kod yazma isteği gelirse önce bu kuralın hâlâ geçerli olup olmadığını 
 14. ✅ Favorites sayfası — `fetchPsychologistsByIds(ids)` (`Promise.all` ile paralel `get`, `filter(exists)`) + `Favorites.jsx` (PrivateRoute arkasında olduğu için auth modalı yok; `ids` değişince yeniden çeker, `Psychologists.module.css`'i paylaşır).
 15. ✅ Randevu modalı + formu — `src/components/AppointmentForm/` (react-hook-form + yup, `src/schemas/appointmentSchema.js`), `TimeDropdown` custom component ile meeting time seçimi. `PsychologistCard` içinden "Make an appointment" ile açılıyor. Commit dea7a15.
     - Ek olarak bu commit'te: `SortDropdown` (native select yerine custom dropdown), Inter fontu + Figma tipografi/spacing hizalaması (Header/AuthForm/AppointmentForm/Modal — kendi renk paletimiz korunarak), Register sonrası Firebase `updateProfile` ile displayName set edilip Header'da avatar+isim gösterimi.
-16. ⬜ Responsive kontrol (320–1440px, tüm sayfalar)
-17. ⬜ README.md (proje konusu, teknolojiler, maket, şartname — şu an default Vite README'i duruyor)
+16. ✅ Responsive kontrol (320–1440px, tüm sayfalar) — PsychologistCard/Home/Header taşma
+    hataları düzeltildi (commit 29b05d9), Modal/AuthForm/AppointmentForm/Favorites kullanıcı
+    tarafından taranıp sorunsuz onaylandı (2026-09-16).
+17. ✅ README.md — default Vite README'i kaldırıldı, proje konusu/sayfalar/teknolojiler/
+    renk paleti/kurulum/build komutları/şartname özeti eklendi. Kullanıcının onayıyla bu
+    dosya (uygulama kodu değil, dokümantasyon olduğu için) Claude tarafından yazıldı.
 18. ⬜ Firebase güvenlik kurallarını sıkılaştırma (test mode'dan çıkış)
 19. ⬜ Deploy (GitHub Pages / Netlify)
 
